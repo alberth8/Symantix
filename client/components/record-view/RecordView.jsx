@@ -185,6 +185,27 @@ export default class RecordView extends React.Component {
     });
   }
 
+  _submitConcept(conceptData){
+    var formData = {
+     'conceptData': conceptData,
+     'sessionId': this.state.sessionId
+    }
+    // send value from textbox under transcript
+    $.ajax({
+      type: 'POST',
+      url: '/api/concept',
+      data: formData,
+      success: function(data) {
+        console.log('Conceptdata: ', data);
+      }.bind(this),
+      error: function(error) {
+        console.error('testData error', error)
+      },
+      dataType: 'json'
+    });
+
+  }
+
   _endSession(e) {
     e.preventDefault();
 
@@ -195,13 +216,14 @@ export default class RecordView extends React.Component {
     //submit that
     
     this._submitText(e.target.textarea.value)
+    this._submitConcept(e.target.textarea.value)
 
     // Wait 2 seconds after stop button is pressed
     setTimeout(function() {
       FACE.webcam.stopPlaying('webcam');
       //console.log('BLOB', blob);
     //  if (this.state.payed) {
-        browserHistory.push('/reports/' + this.state.sessionId.toString());
+      browserHistory.push('/reports/' + this.state.sessionId.toString());
     //  } else {
     //   browserHistory.push('/payment');
      // }
