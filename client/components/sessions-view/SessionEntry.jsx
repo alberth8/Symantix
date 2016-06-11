@@ -7,7 +7,7 @@ export default class SessionEntry extends React.Component {
   }
 
   showSessionReport() {
-    browserHistory.push('/reports/' + this.props.sessionId.toString());
+    browserHistory.push('/allreports/' + this.props.sessionId.toString());
   }
 
   render() {
