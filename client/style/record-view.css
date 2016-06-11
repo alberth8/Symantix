@@ -35,3 +35,15 @@ video#webcam {
 li {
   text-align: left;
 }
+
+.whitetext {
+  color: white;
+  font-size: 40px;
+  padding-right: 35px;
+  margin-bottom: 0px !important;
+}
+
+.button-bar {
+  height: 800px;
+  width: 400px;
+}

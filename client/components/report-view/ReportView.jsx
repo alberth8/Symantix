@@ -135,14 +135,14 @@ export default class ChartComponent extends React.Component {
           <button style={{marginRight: '5px'}} className="pure-button pure-button-active" onClick={this.handlePerformanceClick.bind(this)}>View Performance Analysis</button>
           <button style={{marginRight: '5px'}} className="pure-button pure-button-active" onClick={this.handleConceptClick.bind(this)}>View Concept Insights</button>
         </span>
-        <div style={styles.graphContainer}>
+        <div className='chartview' style={styles.graphContainer}>
           <h3>Mood Chart</h3>
           <LineChart 
             data={this.state.mood}
             redraw options={options}
             width="600" height="250"/>
         </div>
-        <div style={styles.graphContainer}>
+        <div  className='chartview' style={styles.graphContainer}>
           <h3>Expressions Chart</h3>
           <RadarChart 
             data={this.state.expressions}

@@ -55,7 +55,7 @@ export default class ChartComponent extends React.Component {
           <button style={{marginRight: '5px'}} className="pure-button pure-button-active" onClick={this.handlePerformanceClick.bind(this)}>View Performance Analysis</button>
           <button style={{marginRight: '5px'}} className="pure-button pure-button-active" onClick={this.handleConceptClick.bind(this)}>View Concept Insights</button>
         </span>
-        <div>
+        <div className='chartview'>
           <h3>Concept Insight</h3>
         </div>
       </div>

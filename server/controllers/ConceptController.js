@@ -14,7 +14,7 @@ module.exports = {
 	createConcept: function(req, res) {
 
 		var data = req.body.conceptData;
-		console.log('req.body', req.body);
+		//console.log('req.body', req.body);
 		
 		var params = {
 		  graph: '/graphs/wikipedia/en-latest',
@@ -22,8 +22,8 @@ module.exports = {
 		}
 		concept_insights.graphs.annotateText(params, function(err, concept) {
 		  if (err)
-		    console.log('concept err: ', err);
-		    console.log('concept: ', concept.annotations);
+		   // console.log('concept err: ', err);
+		   // console.log('concept: ', concept.annotations);
 		    // input into mode here
 
 
