@@ -4,6 +4,12 @@ import ReactDom from 'react-dom';
 import {browserHistory} from 'react-router';
 import BubbleChart from './BubbleChart.jsx';
 
+const styles = {
+  graphContainer: {
+    border: '1px solid black',
+    padding: '15px'
+  }
+}
 
 export default class ChartComponent extends React.Component {
 
@@ -60,29 +66,10 @@ export default class ChartComponent extends React.Component {
     })
   };
 
-  handleConceptClick(e) {
-    e.preventDefault();
-    browserHistory.push('/concepts/' + this.props.params.sessionId.toString());
-  };
-
-  handleTextClick(e) {
-    e.preventDefault();
-    browserHistory.push('/textAnalysis/' + this.props.params.sessionId.toString());
-  };
-
-  handlePerformanceClick(e) {
-    e.preventDefault();
-    browserHistory.push('/reports/' + this.props.params.sessionId.toString());
-  };
   render() {
     return (
       <div>
-        <span>
-          <button style={{marginRight: '5px'}} className="pure-button pure-button-active" onClick={this.handleTextClick.bind(this)}>View Text Analysis</button>
-          <button style={{marginRight: '5px'}} className="pure-button pure-button-active" onClick={this.handlePerformanceClick.bind(this)}>View Performance Analysis</button>
-          <button style={{marginRight: '5px'}} className="pure-button pure-button-active" onClick={this.handleConceptClick.bind(this)}>View Concept Insights</button>
-        </span>
-        <div className='chartview'>
+        <div className='chartview' style={styles.graphContainer}>
           <h3>Concept Insight</h3>
           <BubbleChart bubbleData={this.state.bubbleData} />
         </div>
