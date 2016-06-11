@@ -21,16 +21,16 @@ module.exports = {
 		  text: dummyText
 		}
 		concept_insights.graphs.annotateText(params, function(err, concept) {
-		  if (err)
-		   // console.log('concept err: ', err);
-		   // console.log('concept: ', concept.annotations);
+		  if (err) {
+		    console.log('concept err: ', err);
+		  } else {
+		    console.log('concept: ', concept.annotations);
 		    // input into mode here
-
-
 		    for ( var i = 0; i < concept.annotations.length; i++ ) {
+		    	var score = concept.annotations[i].score;
 		    	var conceptObj = {
 			    	concept: JSON.stringify(concept.annotations[i].concept),
-			    	score: concept.annotations[i].concept.score,
+			    	score: Math.round(score * 100),
 			    	text_index:  JSON.stringify(concept.annotations[i]['text_index']),
 	          userId: req.user.id, 
 	          sessionId: req.body.sessionId 
@@ -45,6 +45,7 @@ module.exports = {
 	          console.error(err);
 	        });
 			  }
+			}
 		});
 	},
 	getConcepts: function(req, res) {
