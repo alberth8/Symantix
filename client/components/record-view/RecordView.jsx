@@ -79,6 +79,10 @@ export default class RecordView extends React.Component {
     
   }
 
+  componentWillUnmount() {
+    FACE.webcam.stopPlaying('webcam');
+  }
+
   _createNewSession(e) {
     var formData = {
      title: $('.record-title')[0].value,

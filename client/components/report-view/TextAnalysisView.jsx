@@ -7,22 +7,42 @@ import {Doughnut as DoughnutChart} from 'react-chartjs';
 import {Pie as PieChart} from 'react-chartjs';
 import {browserHistory} from 'react-router';
 
-const options = {
-  scaleShowGridLines: true,
-  scaleGridLineColor: 'rgba(0,0,0,.05)',
-  scaleGridLineWidth: 1,
-  scaleShowHorizontalLines: true,
-  scaleShowVerticalLines: true,
-  bezierCurve: true,
-  bezierCurveTension: 0.4,
-  pointDot: true,
-  pointDotRadius: 4,
-  pointDotStrokeWidth: 1,
-  pointHitDetectionRadius: 20,
-  datasetStroke: true,
-  datasetStrokeWidth: 2,
-  datasetFill: true,
-  legendTemplate: '<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span style=\"background-color:<%=datasets[i].strokeColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>'
+var options = {  
+  scaleOverlay : false,
+  scaleOverride : false,
+  scaleSteps : null,
+  scaleStepWidth : null,
+  scaleStartValue : null,
+  scaleShowLine : true,
+  scaleLineColor : "#999",  
+  scaleLineWidth : 1,
+  scaleShowLabels : false,
+  scaleLabel : "<%=value%>",
+  scaleFontFamily : "'Arial'",
+  scaleFontSize : 12, 
+  scaleFontStyle : "normal",
+  scaleFontColor : "#666",
+  scaleShowLabelBackdrop : true,
+  scaleBackdropColor : "rgba(255,255,255,0.75)",
+  scaleBackdropPaddingY : 2,  
+  scaleBackdropPaddingX : 2,
+  angleShowLineOut : true,
+  angleLineColor : "rgba(255,255,255,0.3)",
+  angleLineWidth : 1,     
+  pointLabelFontFamily : "'Arial'",
+  pointLabelFontStyle : "normal",
+  pointLabelFontSize : 12,
+  pointLabelFontColor : "#EFEFEF",
+  pointDot : true,
+  pointDotRadius : 3,
+  pointDotStrokeWidth : 1,
+  datasetStroke : true,
+  datasetStrokeWidth : 1,
+  datasetFill : true,
+  animation : true,
+  animationSteps : 60,
+  animationEasing : "easeOutQuart",
+  onAnimationComplete : null
 }
 
 const styles = {
@@ -197,7 +217,7 @@ export default class ChartComponent extends React.Component {
           <button style={{marginRight: '5px'}} className="pure-button pure-button-active" onClick={this.handlePerformanceClick.bind(this)}>View Performance Analysis</button>
           <button style={{marginRight: '5px'}} className="pure-button pure-button-active" onClick={this.handleConceptClick.bind(this)}>View Concept Insights</button>
         </span>
-        <div style={styles.graphContainer}>
+        <div className='chartview' style={styles.graphContainer}>
           <h3>Emotional Analysis</h3>
           <DoughnutChart 
             data={this.state.emoData}
@@ -206,7 +226,7 @@ export default class ChartComponent extends React.Component {
             generateLegend
             width="600" height="250"/>
         </div>
-        <div style={styles.graphContainer}>
+        <div className='chartview' style={styles.graphContainer}>
           <h3>Language Style</h3>
           <PieChart
             data={this.state.langData} 
@@ -214,7 +234,7 @@ export default class ChartComponent extends React.Component {
             width="600" height="250"/>
         </div>
 
-        <div style={styles.graphContainer}>
+        <div className='chartview' style={styles.graphContainer}>
           <h3>Social Tendencies</h3>
           <RadarChart data={this.state.social} 
             redraw options={options}

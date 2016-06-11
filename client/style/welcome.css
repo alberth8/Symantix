@@ -92,4 +92,8 @@ a.start-button {
   background-color: #749a02;
   color: rgb(200, 220, 235);
   background-color: #3B5998;
+
+  -moz-box-shadow: 0px 0px 10px rgb(200, 220, 235);
+  -webkit-box-shadow: 0px 0px 10px rgb(200, 220, 235);
+  box-shadow: 0px 0px 10px rgb(200, 220, 235);
 }
