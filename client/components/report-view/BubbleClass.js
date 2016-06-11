@@ -1,24 +1,26 @@
 import d3 from 'd3';
 
-export default BubbleChart = function(data) {
-  this.data = data;
+var BubbleClass = function(data) {
   this.bubbles = null;
+  this.bubble = null;
   this.nodes = null;
   this.svg; 
   this.color;
 }
 
-BubbleChart.prototype.blow = function(element) {
-  var diameter = 500,
+BubbleClass.prototype.blow = function(element) {
+  // Only want to create SVG element; no drawing occurs here
+
+  var diameter = 960,
       format = d3.format(",d");
   this.color = d3.scale.category20();
-  console.log('this.color', this.color);
+  // console.log('this.color', this.color);
 
-  var bubble = d3.layout.pack()
+  this.bubble = d3.layout.pack()
       .sort(null)
       .size([diameter, diameter])
       .value(function(d) {
-        console.log('inside', d);
+        // console.log('inside', d);
         return d.score;
       })
       .padding(1.5)
@@ -27,14 +29,16 @@ BubbleChart.prototype.blow = function(element) {
       .attr("width", diameter)
       .attr("height", diameter)
       .attr("class", "bubble");
-
-  this.nodes = bubble.nodes({children: this.data})
-                .filter(function(d) { 
-                  return !d.children; 
-                });
 };
 
-BubbleChart.prototype.update = function() {
+BubbleClass.prototype.update = function(data) {
+
+  // format data
+  this.nodes = this.bubble.nodes({children: data})
+                    .filter(function(d) { 
+                      return !d.children; 
+                    });
+
   //setup the chart
   this.bubbles = this.svg.append("g")
     .attr("transform", "translate(0,0)")
@@ -44,7 +48,10 @@ BubbleChart.prototype.update = function() {
 
   //create the bubbles
   this.bubbles.append("circle")
-    .attr("r", function(d){ return d.r; })
+    .attr("r", function(d){ 
+      // console.log('dINBUBBLECLASS', d);
+      return d.r; 
+    })
     .attr("cx", function(d){ return d.x; })
     .attr("cy", function(d){ return d.y; })
     .style("fill", (d) => (this.color(d.value)) )
@@ -64,6 +71,7 @@ BubbleChart.prototype.update = function() {
 };
 
 // TODO: How to destroy?
-BubbleChart.prototype.pop = function() {
-
+BubbleClass.prototype.pop = function() {
 };
+
+module.exports = BubbleClass;

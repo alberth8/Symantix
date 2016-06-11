@@ -1,26 +1,28 @@
 import React from 'react';
-import BubbleChart from './BubbleClass.js'
+import ReactDOM from 'react-dom'
+import BubbleClass from './BubbleClass.js'
 
 export default class ChartComponent extends React.Component {
 
   constructor(props) {
     super(props)
     this.state = {
-      Bubble: new BubbleChart(this.props.data) // ??? 
+      Bubble: new BubbleClass() // ??? 
     }
   }
   
   // Invoked after initial render; DOM or state updates occur here
   componentDidMount() {     
+    // console.log('this.state.Bubble', this.state.Bubble);
     var elem = ReactDOM.findDOMNode(this);
     this.state.Bubble.blow(elem); // no options parameter given
-    this.state.Bubble.update(elem);
   }
 
   // Called just after rendering; operate on DOM here
   componentDidUpdate() {
-    var elem = ReactDOM.findDOMNode(this);
-    this.state.Bubble.update(elem); // need second parameter for state?
+    console.log('INBUBBLECLASS:', this.props.bubbleData); 
+    // var elem = ReactDOM.findDOMNode(this);
+    this.state.Bubble.update(this.props.bubbleData); // need second parameter for state?
   }
 
   // Called before removed from DOM; clean up operations occur here

@@ -1,9 +1,6 @@
 import $ from 'jquery';
 import React from 'react';
 import ReactDom from 'react-dom';
-import {Line as LineChart} from 'react-chartjs';
-import {Radar as RadarChart} from 'react-chartjs';
-import {Doughnut as DoughnutChart} from 'react-chartjs';
 import {browserHistory} from 'react-router';
 import BubbleChart from './BubbleChart.jsx';
 
@@ -13,7 +10,11 @@ export default class ChartComponent extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      d3Data: null
+      bubbleData: [{
+        topic: "Who cares",
+        wikiURL: "emptystring",
+        score: 100
+      }]
     }
   }
 
@@ -26,13 +27,13 @@ export default class ChartComponent extends React.Component {
         console.error('error while fetching report data', error);
       },
       success: function(sessionData) {
-        console.log('------------');
-        console.log('NEW sD_cV:', sessionData);
-        console.log('------------');
+        // console.log('------------');
+        // console.log('NEW sD_cV:', sessionData);
+        // console.log('------------');
         var concept = JSON.parse(sessionData[0].concept);
 
         // format data to be d3-friendly
-        var d3Data = [];
+        var bubbleData = [];
         sessionData.forEach(function(conceptObj) {
           // grab data from object
           var concept = JSON.parse(conceptObj.concept);
@@ -44,17 +45,17 @@ export default class ChartComponent extends React.Component {
           var wikiURL = "https://en.wikipedia.org/wiki/" + wikiEndpoint;
 
           // push formated concept object 
-          d3Data.push({"topic": topic, // NOTE: Need to concat double quotes?
+          bubbleData.push({"topic": topic, // NOTE: Need to concat double quotes?
                        "wikiURL": wikiURL,
                        "score": score
                       });
         }); // end forEach
 
         this.setState({
-          d3Data: d3Data
+          bubbleData: bubbleData
         });
 
-        console.log(d3Data);
+        // console.log("DID THE DATA SET?", bubbleData);
       }.bind(this)
     })
   };
@@ -83,7 +84,7 @@ export default class ChartComponent extends React.Component {
         </span>
         <div className='chartview'>
           <h3>Concept Insight</h3>
-          <BubbleChart data={this.D3data} />
+          <BubbleChart bubbleData={this.state.bubbleData} />
         </div>
       </div>
     )
