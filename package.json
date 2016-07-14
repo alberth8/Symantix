@@ -1,8 +1,8 @@
 {
-  "name": "legacy-project",
+  "name": "greenfield-project",
   "version": "1.0.0",
-  "description": "Symantix",
-  "author": "LimpkinBeastMaster",
+  "description": "Sentimize.",
+  "author": "chkakaja",
   "license": "MIT",
   "private": true,
   "engines": {
