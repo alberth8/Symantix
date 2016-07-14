@@ -1,8 +1,8 @@
-[![Build Status](https://travis-ci.org/chkakaja/sentimize.svg?branch=master)](https://travis-ci.org/chkakaja/sentimize)
+[![Build Status](https://travis-ci.org/chkakaja/Symantixs.svg?branch=master)](https://travis-ci.org/chkakaja/sentimize)
 [![Stories in Ready](https://badge.waffle.io/chkakaja/sentimize.png?label=ready&title=Ready)](https://waffle.io/chkakaja/sentimize)
-# Sentimize
+# Symantixs
 
-  Sentimize provides human emotion analysis during video recording for interviews and training.
+  Symantixs provides human emotion analysis during video recording for interviews and training.
 
 ## Table of Contents
 1. [Usage](#Usage)
@@ -35,10 +35,10 @@ Session Overview:
 
 #### 1. Clone the latest version
 
-  Start by cloning the latest version of Sentimize on your local machine by running:
+  Start by cloning the latest version of Symantixs on your local machine by running:
 
   ```sh
-  $ git clone https://github.com/LimpkinBeastMaster/symantix.git
+  $ git clone https://github.com/LimpkinBeastMaster/sentimize.git
   $ cd symantix
   ```
 
