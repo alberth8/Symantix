@@ -1,4 +1,4 @@
-// Load environment variables
+ // Load environment variables
 if (process.env.NODE_ENV === 'development') {
   require('dotenv').config({ path: './env/development.env' });
 } else if (process.env.NODE_ENV === 'production') {
@@ -8,6 +8,12 @@ if (process.env.NODE_ENV === 'development') {
 var express = require('express');
 var passport = require('passport');
 var util = require('./lib/utility.js');
+
+var router = express.Router(),
+  vcapServices = require('vcap_services'),
+  extend = require('util')._extend,
+  watson = require('watson-developer-cloud');
+
 
 var app = express();
 
@@ -28,6 +34,28 @@ require('./routes/view-routes.js')(app);
 require('./routes/api-routes.js')(app);
 
 require('./routes/stripe-routes.js')(app);
+
+
+var sttConfig = extend({
+  version: 'v1',
+  url: 'https://stream.watsonplatform.net/speech-to-text/api',
+  username: '7a7fa1e8-78a0-47cd-97d1-e8c789c1d2ff',
+  password: '0oxAekIYeIPw',
+}, vcapServices.getCredentials('speech_to_text'));
+
+var sttAuthService = watson.authorization(sttConfig);
+
+router.get('/api/speech-to-text/token', function(req, res) {
+  sttAuthService.getToken({url: sttConfig.url}, function(err, token) {
+    if (err) {
+      console.log('Error retrieving token: ', err);
+      res.status(500).send('Error retrieving token');
+      return;
+    }
+    res.send(token);
+  });
+});
+
 
 // Wildcard route
 app.get('/*', function(req, res) {

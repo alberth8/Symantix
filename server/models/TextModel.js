@@ -1,10 +1,9 @@
 var db = require('../config/db.js');
-require('./SessionModel.js');
 require('./UserModel.js');
+require('./SessionModel.js');
 
-
-var Snapshot = db.Model.extend({
-  tableName: 'snapshots',
+var Text = db.Model.extend({
+  tableName: 'text',
   hasTimestamps: true,
   user: function() {
     return this.belongsTo('User', 'userId');
@@ -14,4 +13,4 @@ var Snapshot = db.Model.extend({
   },
 })
 
-module.exports = db.model('Snapshot', Snapshot);
+module.exports = db.model('Text', Text);

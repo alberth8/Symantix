@@ -8,7 +8,10 @@ import env from './../../../env/client-config.js';
 import RecordInstructions from './record-instructions.jsx';
 import RecordQuestions from './record-questions.jsx';
 
-//var x = 0;
+var Speech = require('watson-html5-speech-recognition');
+var speech = new Speech.SpeechToText({
+  watsonTokenUrl: '/api/speech-to-text/token'
+});
 
 export default class RecordView extends React.Component {
   constructor(props) {
@@ -18,8 +21,41 @@ export default class RecordView extends React.Component {
       intervalId: null,
       showQuestions: false,
       startTime: undefined,
-      payed: false
+      payed: false,
+      speechText: ''
     }
+  }
+
+  _listen() {
+    var that = this;
+    var x = '';
+    var y = '';
+    speech.listen({
+      onStart: function() {
+          console.log('starting');
+      },
+      onResult: function(e) {
+        //console.log(e.text);
+        y = e.text;
+          that.setState({
+            speechText: x+y
+          })
+
+          if (e.isFinal) {
+              x += e.text;
+              that.setState({
+                speechText: x
+              })
+          }
+      },
+      onError: function(e) {
+          console.log('error', e);
+      },
+      onEnd: function(e) {
+          console.log('end', e);
+          stopListening();
+      }
+    });
   }
 
   componentDidMount() {
@@ -41,6 +77,10 @@ export default class RecordView extends React.Component {
       }
     });
     
+  }
+
+  componentWillUnmount() {
+    FACE.webcam.stopPlaying('webcam');
   }
 
   _createNewSession(e) {
@@ -81,6 +121,9 @@ export default class RecordView extends React.Component {
       FACE.webcam.takePicture('webcam', 'current-snapshot');
       this._takeSnapshot();
     }.bind(this), 1000);
+
+    //start watson
+    this._listen();
 
     this.setState({ intervalId: intervalId, startTime: Date.now() });
   }
@@ -126,19 +169,68 @@ export default class RecordView extends React.Component {
     });
   }
 
-  _endSession() {
-    console.log('Session ended.');
+  _submitText(textData) {
+    var formData = {
+     'textData': textData,
+     'sessionId': this.state.sessionId
+    }
+    // send value from textbox under transcript
+    $.ajax({
+      type: 'POST',
+      url: '/api/text',
+      data: formData,
+      success: function(data) {
+        console.log('textdata: ', data);
+      }.bind(this),
+      error: function(error) {
+        console.error('testData error', error)
+      },
+      dataType: 'json'
+    });
+  }
+
+  _submitConcept(conceptData){
+    var formData = {
+     'conceptData': conceptData,
+     'sessionId': this.state.sessionId
+    }
+    // send value from textbox under transcript
+    $.ajax({
+      type: 'POST',
+      url: '/api/concept',
+      data: formData,
+      success: function(data) {
+        console.log('Conceptdata: ', data);
+      }.bind(this),
+      error: function(error) {
+        console.error('testData error', error)
+      },
+      dataType: 'json'
+    });
+
+  }
+
+  _endSession(e) {
+    e.preventDefault();
+
     clearInterval(this.state.intervalId);
     this._calcDuration()
+
+    //get the speech to text
+    //submit that
+    
+    this._submitText(e.target.textarea.value)
+    this._submitConcept(e.target.textarea.value)
 
     // Wait 2 seconds after stop button is pressed
     setTimeout(function() {
       FACE.webcam.stopPlaying('webcam');
-      if (this.state.payed) {
-        browserHistory.push('/reports/' + this.state.sessionId.toString());
-      } else {
-       browserHistory.push('/payment');
-      }
+      //console.log('BLOB', blob);
+    //  if (this.state.payed) {
+      browserHistory.push('/reports/' + this.state.sessionId.toString());
+    //  } else {
+    //   browserHistory.push('/payment');
+     // }
     }.bind(this), 1000)
   }
 
@@ -180,33 +272,10 @@ export default class RecordView extends React.Component {
         </div>
         <div className="pure-u-1-3 record-form">
           <RecordInstructions clicked={this._createNewSession.bind(this)}/>
-          { this.state.showQuestions ? <RecordQuestions clicked={this._endSession.bind(this)}/> : null }
+          { this.state.showQuestions ? <RecordQuestions speech={this.state.speechText} clicked={this._endSession.bind(this)}/> : null }
         </div>
 
       </div>
     )
   }
 }
-
-// <div className="pure-u-2-3 record-box">
-//           <img className='pure-u-1-2' id='current-snapshot' src=''/>
-//         </div>
-
-
-// $.ajax({
-//         type: 'GET',
-//         url: '/api/users',
-//         success: function(user) {
-//           // check if user has payed
-//           console.log('SUCCESS: ', user);
-//           if (user.payed === 1) {
-//             browserHistory.push('/reports/' + this.state.sessionId.toString());
-//           } else {
-//             browserHistory.push('/payment');
-//           }
-//         }.bind(this),
-//         error: function(error) {
-//           console.error('User Not Found:', error)
-//         },
-//         dataType: 'json'
-//       });

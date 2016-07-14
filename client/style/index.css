@@ -11,7 +11,7 @@
 .nav-bar {
   height: 100px;
   background-color: #000000;
-  border-bottom: 4px solid;
+  border-bottom: 3px solid rgb(200, 220, 235);
 }
 
 .pure-menu-heading {
@@ -45,6 +45,30 @@
   color: rgb(70, 130, 210);
   transition: all .2s ease;
   margin: 0 4px;
+  letter-spacing: 2px;
+  color: rgb(200, 220, 235);
+  font-weight: 0 !important;
+}
+
+.pure-menu-link-pay {
+  background-color: black !important;
+  border-radius: 3px;
+  color: rgb(70, 130, 210);
+  transition: all .2s ease;
+  margin: 0px;
+  width: 50%;
+    letter-spacing: 2px;
+  color: rgb(200, 220, 235);
+  font-weight: 0 !important;
+}
+.pure-menu-link-pay:hover {
+  /*color: #2d3e50;*/ 
+  width: 112px;
+  background-color: #5cb85c !important;
+}
+
+.hideWidth {
+  width: 0%;
 }
 
 .pure-menu-link:hover {

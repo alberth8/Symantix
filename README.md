@@ -38,8 +38,8 @@ Session Overview:
   Start by cloning the latest version of Sentimize on your local machine by running:
 
   ```sh
-  $ git clone https://github.com/chkakaja/sentimize
-  $ cd sentimize
+  $ git clone https://github.com/LimpkinBeastMaster/symantix.git
+  $ cd symantix
   ```
 
 #### 2. Install Dependencies
@@ -119,7 +119,7 @@ Session Overview:
 - pm2: Production Process Manager
 
 ## Architecture
-![sentimize](https://cloud.githubusercontent.com/assets/10008938/15795587/c0bfd19a-29a7-11e6-9402-de7dabdf1526.png)
+![symantix](https://cloud.githubusercontent.com/assets/10008938/15795587/c0bfd19a-29a7-11e6-9402-de7dabdf1526.png)
 
 <!-- ### Database Schema
 <b> to be added </b> -->
@@ -156,10 +156,16 @@ Session Overview:
 └── .eslintrc                   # ESLint settings
 ```
 
-## Team
+## GOLD Team
+  - Product Owner:            Ben Roa
+  - Scrum Master:             Asif Ahmed
+  - Development Team Members: Tim Do, Asif Ahmed, Albert Han, Ben Roa
+
+## BLUE Team
   - Product Owner:            Christian Haug
   - Scrum Master:             Jack Zhang
   - Development Team Members: Christian Haug, Jack Zhang, Kani Munidasa, Katherine Hao
+
 
 ## Contributing
 See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution guidelines.

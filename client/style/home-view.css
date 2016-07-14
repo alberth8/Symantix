@@ -2,12 +2,13 @@
   margin: 70px 0 20px;
   font-weight: 300;
   font-size: 50px;
+  color: white;
 }
 
 .home-view-welcome {
   font-weight: 300;
   font-size: 20px;
-  /*color: rgb(130, 130, 140);*/
+  color: white;
   margin-bottom: 45px;
 }
 
@@ -15,14 +16,45 @@
   font-weight: 300;
   font-size: 16px;
   margin: 10px 0;
-  color: black;
+  color: white;
 }
 
 .home-view-instruction .instruction-highlight {
   font-size: 23px;
-  color: rgb(70, 130, 210);
+  font-color: red;
 }
 
 .instruction-highlight a:hover {
-  color: black;
+  color: red;
+}
+
+.linktext {
+  color: red;
+}
+
+.home-link {
+  text-transform: lowercase;
+  font-size: 45px;
+  font-weight: 150;
+  letter-spacing: 2px;
+  color: rgb(200, 220, 235);
+  -webkit-animation: neon2 2s ease-in-out infinite alternate;
+  -moz-animation: neon2 2s ease-in-out infinite alternate;
+  animation: neon2 2s ease-in-out infinite alternate;
+}
+
+@import url(http://fonts.googleapis.com/css?family=Lato:900);
+
+.xx {
+  color: white;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+h1 {
+  font-size: 70px;
+  line-height: 2;
+  font-family: 'Lato', "Hiragino Kaku Gothic Pro","ヒラギノ角ゴ Pro W3", sans-serif;
+  font-weight: bold;
 }

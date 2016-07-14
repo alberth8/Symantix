@@ -4,7 +4,7 @@ import ReactDom from 'react-dom';
 
 export default (props) => (
   <div className="record-instructions pure-u-1-1">
-  <h2> Session Info </h2>
+  <h2 className='whitetext'> Session Info </h2>
   	<form action='' className="pure-form">
 	    <fieldset id="pure-form-group" className="pure-group">
 	        <input type="text"  name='title' className="record-title record-form-input pure-input-1-2" placeholder="Title"></input>
