@@ -17,7 +17,6 @@
 6. [Contributing](#Contributing)
 
 ## Usage
-![stripepay](https://cloud.githubusercontent.com/assets/2279902/16827322/4735b620-493a-11e6-9fd4-44a214fc390b.png)
 Landingpage:
 ![landing](https://cloud.githubusercontent.com/assets/2279902/16827321/4735066c-493a-11e6-9315-4ec8b29c73e2.png)
 Payment:
