@@ -17,11 +17,11 @@
 6. [Contributing](#Contributing)
 
 ## Usage
-
+![stripepay](https://cloud.githubusercontent.com/assets/2279902/16827322/4735b620-493a-11e6-9fd4-44a214fc390b.png)
 Landingpage:
-![screen shot 2016-06-06 at 20 10 44](https://cloud.githubusercontent.com/assets/10008938/15844915/2478c052-2c23-11e6-8069-5ed2edce3c05.png)
-Login:
-![screen shot 2016-06-06 at 20 11 19](https://cloud.githubusercontent.com/assets/10008938/15844918/2796150a-2c23-11e6-98ab-8042cbf48ea1.png)
+![landing](https://cloud.githubusercontent.com/assets/2279902/16827321/4735066c-493a-11e6-9315-4ec8b29c73e2.png)
+Payment:
+![stripepay](https://cloud.githubusercontent.com/assets/2279902/16827322/4735b620-493a-11e6-9fd4-44a214fc390b.png)
 Home:
 ![screen shot 2016-06-06 at 20 08 50](https://cloud.githubusercontent.com/assets/10008938/15844927/334263b8-2c23-11e6-94f4-d9a040efdfd1.png)
 Record:
