@@ -3,12 +3,12 @@ import { TransitionMotion, spring } from 'react-motion';
 
 const willEnter = () => ({
   opacity: 0,
-  scale: 0.98
+  scale: 1
 });
 
 const willLeave = () => ({
   opacity: spring(0),
-  scale: spring(1.02)
+  scale: spring(1)
 });
 
 const getStyles = () => ({
