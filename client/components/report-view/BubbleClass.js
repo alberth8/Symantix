@@ -8,14 +8,13 @@ var BubbleClass = function(data) {
   this.color;
 }
 
-BubbleClass.prototype.blow = function(element) {
+BubbleClass.prototype.blow = function(element) { // make bubble
   // Only want to create SVG element; no drawing occurs here
 
   // bubble settings
   var diameter = 1080,
-      format = d3.format(",d");
+      format = d3.format(',d');
   this.color = d3.scale.category20();
-  // console.log('this.color', this.color);
 
   this.bubble = d3.layout.pack()
       .sort(null)
@@ -27,10 +26,10 @@ BubbleClass.prototype.blow = function(element) {
       .padding(1.5)
 
 // create svg element
-  this.svg = d3.select(element).append("svg")
-      .attr("width", diameter)
-      .attr("height", diameter)
-      .attr("class", "bubble");
+  this.svg = d3.select(element).append('svg')
+      .attr('width', diameter)
+      .attr('height', diameter)
+      .attr('class', 'bubble');
 };
 
 BubbleClass.prototype.update = function(data) {
@@ -42,38 +41,34 @@ BubbleClass.prototype.update = function(data) {
                     });
 
   //setup the chart
-  this.bubbles = this.svg.append("g")
-    .attr("transform", "translate(0,0)")
-    .selectAll(".bubble") // TODO: add onClick here?
+  this.bubbles = this.svg.append('g')
+    .attr('transform', 'translate(0,0)')
+    .selectAll('.bubble') // TODO: add onClick here?
     .data(this.nodes)
     .enter(); // appends extra nodes to data
 
   //create the bubbles
-  this.bubbles.append("circle")
-    .attr("r", function(d){ 
+  this.bubbles.append('circle')
+    .attr('r', function(d){ 
       // console.log('dINBUBBLECLASS', d);
       return d.r; 
     })
-    .attr("cx", function(d){ return d.x; })
-    .attr("cy", function(d){ return d.y; })
-    .style("fill", (d) => (this.color(d.value)) )
-    .on("click", function(bubl) { window.open(bubl.wikiURL); });
+    .attr('cx', function(d){ return d.x; })
+    .attr('cy', function(d){ return d.y; })
+    .style('fill', (d) => (this.color(d.value)) )
+    .on('click', function(bubl) { window.open(bubl.wikiURL); });
 
   // format the text displayed for each bubble
-  this.bubbles.append("text")
-    .attr("x", function(d){ return d.x; })
-    .attr("y", function(d){ return d.y + 5; })
-    .attr("text-anchor", "middle")
+  this.bubbles.append('text')
+    .attr('x', function(d){ return d.x; })
+    .attr('y', function(d){ return d.y + 5; })
+    .attr('text-anchor', 'middle')
     .text(function(d) { return d.topic.substring(0, d.r / 5); })
     .style({
-      "fill":"white", 
-      "font-family":"Roboto, Helvetica Neue, Helvetica, Arial, san-serif",
-      "font-size": "16px"
+      'fill':'white', 
+      'font-family':'Roboto, Helvetica Neue, Helvetica, Arial, san-serif',
+      'font-size': '16px'
     });
-};
-
-// TODO: How to destroy?
-BubbleClass.prototype.pop = function() {
 };
 
 module.exports = BubbleClass;

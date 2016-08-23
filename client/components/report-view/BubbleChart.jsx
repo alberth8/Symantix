@@ -22,11 +22,10 @@ export default class ChartComponent extends React.Component {
   componentDidUpdate() {
     console.log('INBUBBLECLASS:', this.props.bubbleData); 
     // var elem = ReactDOM.findDOMNode(this);
-    this.state.Bubble.update(this.props.bubbleData); // need second parameter for state?
+    this.state.Bubble.update(this.props.bubbleData);
   }
 
   // Called before removed from DOM; clean up operations occur here
-  // TODO: How to destroy?
   componentWillUnmount() {
     var elem = ReactDOM.findDOMNode(this);
     // this.state.Bubble.pop(elem);

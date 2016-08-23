@@ -189,9 +189,10 @@ export default class RecordView extends React.Component {
     });
   }
 
-  _submitConcept(conceptData){
+  // send user's speech (text) to obtain concepts
+  _submitConcept(conceptData){ 
     var formData = {
-     'conceptData': conceptData,
+     'conceptData': conceptData, // user's text
      'sessionId': this.state.sessionId
     }
     // send value from textbox under transcript
