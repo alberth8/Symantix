@@ -17,14 +17,13 @@ module.exports = {
 		
 		// parameters for API call
 		var params = {
-			maxRetrieve: 10, 
+			maxRetrieve: 20, 
 		  text: data // line 11
 		}
 
 		// when the data is returned, the callback gets executed, whence we save 
 		// that returned data to our database -- each concept is it's own entry
 		alchemy_language.concepts(params, function(err, watson_response) {
-			console.log('TRIGGERED');
 		  if (err) {
 		    console.log('concept err: ', err);
 		  } else {
@@ -34,11 +33,12 @@ module.exports = {
 		    for (var i = 0; i < watson_response.concepts.length; i++) { 
 		    	var relevanceScore = watson_response.concepts[i].relevance;
 		    	var conceptObj = {
-		    		concept: JSON.stringify(watson_response.concepts[i].text),
+		    		concept: watson_response.concepts[i].text,
 		    		score: Math.round(relevanceScore * 100),
 		    		userId: req.user.id,
 		    		sessionId: req.body.sessionId 
 		    	};
+
 
 		    	new Concept(conceptObj).save()
 	        .then(function(newConcept) {

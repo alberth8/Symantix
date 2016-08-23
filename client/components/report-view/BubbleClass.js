@@ -50,7 +50,6 @@ BubbleClass.prototype.update = function(data) {
   //create the bubbles
   this.bubbles.append('circle')
     .attr('r', function(d){ 
-      // console.log('dINBUBBLECLASS', d);
       return d.r; 
     })
     .attr('cx', function(d){ return d.x; })

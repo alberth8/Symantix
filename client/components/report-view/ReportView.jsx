@@ -36,7 +36,7 @@ export default class ChartComponent extends React.Component {
     super(props)
     this.state = {
       expressions: {
-        labels: ['Sadness', 'Disgust', 'Anger', 'Surprise', 'Fear', 'Happiness'],
+        labels: ['sadness', 'disgust', 'anger', 'surprise', 'fear', 'happiness'],
         datasets: [
           {
             label: 'Expressions',

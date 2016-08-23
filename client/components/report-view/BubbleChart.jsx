@@ -20,7 +20,6 @@ export default class ChartComponent extends React.Component {
 
   // Called just after rendering; operate on DOM here
   componentDidUpdate() {
-    console.log('INBUBBLECLASS:', this.props.bubbleData); 
     // var elem = ReactDOM.findDOMNode(this);
     this.state.Bubble.update(this.props.bubbleData);
   }

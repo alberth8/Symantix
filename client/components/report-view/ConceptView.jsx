@@ -17,9 +17,9 @@ export default class ChartComponent extends React.Component {
     super(props)
     this.state = {
       bubbleData: [{
-        topic: "Who cares",
-        wikiURL: "emptystring",
-        score: 100
+        topic: 'abc',
+        wikiURL: 'wikipedia',
+        score: 10
       }]
     }
   }
@@ -32,36 +32,31 @@ export default class ChartComponent extends React.Component {
       error: function(request, status, error) {
         console.error('error while fetching report data', error);
       },
-      success: function(sessionData) {
-        // console.log('------------');
-        // console.log('NEW sD_cV:', sessionData);
-        // console.log('------------');
-        var concept = JSON.parse(sessionData[0].concept);
+      success: function(conceptData) {
+        // console.log('NEW sD_cV:', conceptData);
 
         // format data to be d3-friendly
         var bubbleData = [];
-        sessionData.forEach(function(conceptObj) {
+        conceptData.forEach(function(conceptObj) {
           // grab data from object
-          var concept = JSON.parse(conceptObj.concept);
-          var topic = concept.label;      
+          var concept = conceptObj.concept;
           var score = conceptObj.score;
 
           // create wikipedia link
-          var wikiEndpoint = concept.label.replace(/ /g, '_');
-          var wikiURL = "https://en.wikipedia.org/wiki/" + wikiEndpoint;
+          var wikiEndpoint = concept.replace(/ /g, '_');
+          var wikiURL = 'https://en.wikipedia.org/wiki/' + wikiEndpoint;
 
-          // push formated concept object 
-          bubbleData.push({"topic": topic, // NOTE: Need to concat double quotes?
-                       "wikiURL": wikiURL,
-                       "score": score
-                      });
+          // push formated concept object
+          bubbleData.push({
+            'topic': concept,
+            'wikiURL': wikiURL,
+            'score': score
+          });
         }); // end forEach
 
         this.setState({
           bubbleData: bubbleData
         });
-
-        // console.log("DID THE DATA SET?", bubbleData);
       }.bind(this)
     })
   };
