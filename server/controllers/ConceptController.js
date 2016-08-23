@@ -1,66 +1,87 @@
 var Concept = require('../models/ConceptModel.js');
 var watson = require('watson-developer-cloud');
 
-// var dummyText = " Why would politicians want to change a system that's totally rigged in order to keep them in power? That's what they're doing, folks. Why would politicians want to change a system that's made them and their friends very, very wealthy? I beat a rigged system, by winning with overwhelming support. The only way you could have done it. Landslides all over the country, with every demographic on track to win 37 primary caucus victories in a field that began with 17 very talented people. After years of disappointment, there's one thing we all have learned. We can't fix the rigged system by relying on — and I mean this so, so strongly — the very people who rigged it. And they rigged it. And do not ever think anything differently. We can't solve our problems by counting on the politicians who created our problems. The Clintons have turned the politics of personal enrichment into an art form for themselves. They've made hundreds of millions of dollars selling access, selling favors, selling government contracts, and I mean hundreds of millions of dollars. Secretary Clinton even did all of the work on a totally illegal private server. Something that how she's getting away with nobody understands. Designed to keep her corrupt dealings out of the public record, putting the security of the entire country at risk, and a president in a corrupt system is totally protecting her. Not right."
-
-
-var concept_insights = watson.concept_insights({
-  username: process.env.CONCEPT_USERNAME,
-  password: process.env.CONCEPT_PASSWORD,
-  version: 'v2'
+var alchemy_language = watson.alchemy_language({
+  api_key: process.env.ALCHEMY_APIKEY
 });
 
-module.exports = {
-	createConcept: function(req, res) {
+// see very botton for notes for when you review this next time
 
-		var data = req.body.conceptData;
-		//console.log('req.body', req.body);
+module.exports = {
+
+	// through `alchemy_language`, concept data is obtained
+	createConcept: function(req, res) { 
+
+		var data = req.body.conceptData; // user's text
+		console.log('req.body=conceptData=', req.body); // check! data comes through properly as string
 		
+		// parameters for API call
 		var params = {
-		  graph: '/graphs/wikipedia/en-latest',
-		  text: data
+			maxRetrieve: 10, 
+		  text: data // line 11
 		}
-		concept_insights.graphs.annotateText(params, function(err, concept) {
+
+		// when the data is returned, the callback gets executed, whence we save 
+		// that returned data to our database -- each concept is it's own entry
+		alchemy_language.concepts(params, function(err, watson_response) {
+			console.log('TRIGGERED');
 		  if (err) {
 		    console.log('concept err: ', err);
 		  } else {
-		    console.log('concept: ', concept.annotations);
-		    // input into mode here
-		    for ( var i = 0; i < concept.annotations.length; i++ ) {
-		    	var score = concept.annotations[i].score;
-		    	var conceptObj = {
-			    	concept: JSON.stringify(concept.annotations[i].concept),
-			    	score: Math.round(score * 100),
-			    	text_index:  JSON.stringify(concept.annotations[i]['text_index']),
-	          userId: req.user.id, 
-	          sessionId: req.body.sessionId 
-		    	}
-			    console.log('conceptObj ', conceptObj);
+		    console.log('concept: ', watson_response);
 
-	        new Concept(conceptObj).save()
+		    // putting each concept into it's own object so that it can be saved as an entry
+		    for (var i = 0; i < watson_response.concepts.length; i++) { 
+		    	var relevanceScore = watson_response.concepts[i].relevance;
+		    	var conceptObj = {
+		    		concept: JSON.stringify(watson_response.concepts[i].text),
+		    		score: Math.round(relevanceScore * 100),
+		    		userId: req.user.id,
+		    		sessionId: req.body.sessionId 
+		    	};
+
+		    	new Concept(conceptObj).save()
 	        .then(function(newConcept) {
 	          res.status(201).send();
 	        })
 	        .catch(function(err) {
 	          console.error(err);
 	        });
-			  }
+		    }
 			}
 		});
 	},
 	getConcepts: function(req, res) {
 		var queryObj = {
-			sessionId: req.param('sessionId')
+			sessionId: req.query.sessionId,
 		}
 
 		Concept.where(queryObj).fetchAll()
 		  .then(function(concept) {
-		  	res.status(200).send(concept);
+		  	console.log(concept.models);
+		  	res.status(200).send(concept.models);
 		  })
 		  .catch(function(err) {
-		  	console.error(err);
+		  	res.status(500).send();
 		  });
 	}
 
 }
+
+
+// In RecordView.jsx, we send the transcribed text to the endpoint /api/concept.
+// In the route handler (api-routes.js), we invoke `createConcept`.
+// It is here where the call to the watson API is made: `alchemy_language.graphs.annotateText()`.
+// Note that concept insights is now depcreated, so I'll have to figure out how to do this with
+// Alchemy Language, but that also have a concepts feature.
+// I'll have to figure out how to console.log that data, so I can see how to manipulate it.
+// Actually, what happens is when the session is ended (by clicking stop) ens automatically when I send that data
+// Each concept should save to the db, just as we did with alchemy_language, HOWEVER,
+// I should make a minor modification in that I should reduce any concepts that are the same, and sum
+// their scores.
+// Then in ConceptView.jsx, we make a get request to the endpoint /api/concept, but because it's a GET,
+// we invoke `getConcepts()`, where we query the for ALL concepts with that sessionId.
+// All of that is then returned back to the client where the D3 bubble chart is composed.
+// Since I aggreagted the data in createConcepts(), I shouldn't have to worry about messing w/ D3.
+// Of course, this is assuming the error is that I have duplicate data, and not with D3.
 

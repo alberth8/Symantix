@@ -9,8 +9,7 @@ db.knex.schema.hasTable('concept').then(function(exists){
       // Concept Insights 1
       concept.string('concept');
       concept.integer('score');
-      concept.string('text_index');     
-
+      
       // DB info
       concept.integer('userId');
       concept.integer('sessionId');
