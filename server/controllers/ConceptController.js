@@ -5,8 +5,6 @@ var alchemy_language = watson.alchemy_language({
   api_key: process.env.ALCHEMY_APIKEY
 });
 
-// see very botton for notes for when you review this next time
-
 module.exports = {
 
 	// through `alchemy_language`, concept data is obtained
@@ -67,21 +65,4 @@ module.exports = {
 	}
 
 }
-
-
-// In RecordView.jsx, we send the transcribed text to the endpoint /api/concept.
-// In the route handler (api-routes.js), we invoke `createConcept`.
-// It is here where the call to the watson API is made: `alchemy_language.graphs.annotateText()`.
-// Note that concept insights is now depcreated, so I'll have to figure out how to do this with
-// Alchemy Language, but that also have a concepts feature.
-// I'll have to figure out how to console.log that data, so I can see how to manipulate it.
-// Actually, what happens is when the session is ended (by clicking stop) ens automatically when I send that data
-// Each concept should save to the db, just as we did with alchemy_language, HOWEVER,
-// I should make a minor modification in that I should reduce any concepts that are the same, and sum
-// their scores.
-// Then in ConceptView.jsx, we make a get request to the endpoint /api/concept, but because it's a GET,
-// we invoke `getConcepts()`, where we query the for ALL concepts with that sessionId.
-// All of that is then returned back to the client where the D3 bubble chart is composed.
-// Since I aggreagted the data in createConcepts(), I shouldn't have to worry about messing w/ D3.
-// Of course, this is assuming the error is that I have duplicate data, and not with D3.
 
