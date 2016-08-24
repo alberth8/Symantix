@@ -20,7 +20,7 @@
 Landing page:
 ![landing](https://cloud.githubusercontent.com/assets/2279902/16827321/4735066c-493a-11e6-9315-4ec8b29c73e2.png)
 
-Extracted concepts after reading the first few paragraphs of this [NPR article](http://www.npr.org/sections/alltechconsidered/2016/08/08/487291905/why-taylor-swift-is-asking-congress-to-update-copyright-laws). The sizes of each node represent a relevance score.
+Extracted concepts after reading aloud the first few paragraphs of this [NPR article](http://www.npr.org/sections/alltechconsidered/2016/08/08/487291905/why-taylor-swift-is-asking-congress-to-update-copyright-laws). The sizes of each node represent a relevance score.
 ![bubbles](https://github.com/alberth8/Symantix/blob/fixD3/screenshots/nprBubbles.png)
 
 Payment:
