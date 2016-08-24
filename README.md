@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/chkakaja/Symantixs.svg?branch=master)](https://travis-ci.org/chkakaja/sentimize)
 [![Stories in Ready](https://badge.waffle.io/chkakaja/sentimize.png?label=ready&title=Ready)](https://waffle.io/chkakaja/sentimize)
-# Symantixs
+# Symantix
 
   Symantixs provides human emotion and speech analysis through video recording for interviews and training.
 
