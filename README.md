@@ -17,18 +17,18 @@
 6. [Contributing](#Contributing)
 
 ## Usage
-Landingpage:
+Landing page:
 ![landing](https://cloud.githubusercontent.com/assets/2279902/16827321/4735066c-493a-11e6-9315-4ec8b29c73e2.png)
+Extracted concepts after reading the first few paragraphs of this [NPR article](http://www.npr.org/sections/alltechconsidered/2016/08/08/487291905/why-taylor-swift-is-asking-congress-to-update-copyright-laws). The sizes of each node represent a relevance score.
+![bubbles](https://github.com/alberth8/Symantix/blob/fixD3/screenshots/nprBubbles.png)
 Payment:
-![stripepay](https://cloud.githubusercontent.com/assets/2279902/16827322/4735b620-493a-11e6-9fd4-44a214fc390b.png)
+![stripepay](https://github.com/alberth8/Symantix/blob/fixD3/screenshots/stripepay.png)
 Home:
 ![screen shot 2016-06-06 at 20 08 50](https://cloud.githubusercontent.com/assets/10008938/15844927/334263b8-2c23-11e6-94f4-d9a040efdfd1.png)
 Record:
 ![screen shot 2016-06-06 at 20 10 18](https://cloud.githubusercontent.com/assets/10008938/15844922/2cdbb236-2c23-11e6-9f2d-4adf4d9b0f79.png)
-Graphs:
+Analysis of Facial expressions, captured on a timed interval:
 ![screen shot 2016-06-06 at 20 09 39](https://cloud.githubusercontent.com/assets/10008938/15844923/2f5013c2-2c23-11e6-8608-607eff0c4da8.png)
-Session Overview:
-![screen shot 2016-06-06 at 20 09 18](https://cloud.githubusercontent.com/assets/10008938/15844924/3144420c-2c23-11e6-920e-c4ebdc5dea55.png)
 
 ## Getting started
 
