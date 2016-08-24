@@ -2,7 +2,7 @@
 [![Stories in Ready](https://badge.waffle.io/chkakaja/sentimize.png?label=ready&title=Ready)](https://waffle.io/chkakaja/sentimize)
 # Symantix
 
-  Symantixs provides human emotion and speech analysis through video recording for interviews and training.
+  Symantix provides human emotion and speech analysis through video recording for interviews and training.
 
 ## Table of Contents
 1. [Usage](#Usage)
