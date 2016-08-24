@@ -139,6 +139,9 @@ Analysis of facial expressions, captured on a timed interval:
 │     ├── /main-layout/         # Main Layout components
 │     ├── /record-view/         # Record view components
 │     ├── /report-view/         # Reporting view components
+│     ├── /sessions-view/       # Recorded sessions view components
+│     ├── /settings-view/       # User settings view components
+│     ├── /payment-view/        # Payment view components
 │     ├── /App.jsx/             # Main React App
 │   ├── /lib/                   # Lib files, e.g. from FACE API
 │   ├── /style/                 # CSS Style files
