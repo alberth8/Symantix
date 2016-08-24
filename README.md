@@ -32,7 +32,7 @@ Home:
 Record:
 ![screen shot 2016-06-06 at 20 10 18](https://cloud.githubusercontent.com/assets/10008938/15844922/2cdbb236-2c23-11e6-9f2d-4adf4d9b0f79.png)
 
-Analysis of Facial expressions, captured on a timed interval:
+Analysis of facial expressions, captured on a timed interval:
 ![screen shot 2016-06-06 at 20 09 39](https://cloud.githubusercontent.com/assets/10008938/15844923/2f5013c2-2c23-11e6-8608-607eff0c4da8.png)
 
 ## Getting started
