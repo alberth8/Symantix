@@ -29,7 +29,7 @@ Analysis of facial expressions, captured on a timed interval during the recordin
 By transcribing audio to text, we're able to perform sentiment analysis and extract concepts (next image) from the users speech. Here we perform sentiment analysis of the text:
 ![textAnalysis](https://github.com/alberth8/Symantix/blob/master/screenshots/text_analysis.png)
 
-Here is an example after reading aloud the first few paragraphs of this [NPR article](http://www.npr.org/sections/alltechconsidered/2016/08/08/487291905/why-taylor-swift-is-asking-congress-to-update-copyright-laws). The sizes of each node represent a relevance score. Clicking on each bubble will take you to the wikipedia article of that concept.
+After reading aloud the first few paragraphs of this [NPR article](http://www.npr.org/sections/alltechconsidered/2016/08/08/487291905/why-taylor-swift-is-asking-congress-to-update-copyright-laws), we extract the following concepts. The sizes of each node represent a relevancy score. Clicking on each bubble will take you to the wikipedia article of that concept.
 ![bubbles](https://github.com/alberth8/Symantix/blob/fixD3/screenshots/nprBubbles.png)
 
 Payment:
