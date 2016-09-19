@@ -26,7 +26,7 @@ Users records their speech.
 Analysis of facial expressions, captured on a timed interval during the recording.
 ![screen shot 2016-06-06 at 20 09 39](https://cloud.githubusercontent.com/assets/10008938/15844923/2f5013c2-2c23-11e6-8608-607eff0c4da8.png)
 
-Extracted concepts after reading aloud the first few paragraphs of this [NPR article](http://www.npr.org/sections/alltechconsidered/2016/08/08/487291905/why-taylor-swift-is-asking-congress-to-update-copyright-laws). The sizes of each node represent a relevance score.
+Extracted concepts after reading aloud the first few paragraphs of this [NPR article](http://www.npr.org/sections/alltechconsidered/2016/08/08/487291905/why-taylor-swift-is-asking-congress-to-update-copyright-laws). The sizes of each node represent a relevance score. Clicking on each bubble will take you to the wikipedia article of that concept.
 ![bubbles](https://github.com/alberth8/Symantix/blob/fixD3/screenshots/nprBubbles.png)
 
 Payment:
